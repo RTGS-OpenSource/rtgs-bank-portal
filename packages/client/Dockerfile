@@ -14,6 +14,8 @@ COPY package.json /app/
 
 RUN yarn install --frozen-lockfile
 
+COPY --chown=devops:devops ./ /app/
+
 # test and lint here when added
 
 RUN yarn build
