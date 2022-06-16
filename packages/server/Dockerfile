@@ -1,4 +1,4 @@
-FROM node:14.17.4-alpine as build-stage
+FROM node:14.17.4-alpine as base
 
 WORKDIR /app
 
@@ -14,10 +14,10 @@ COPY package.json /app/
 
 RUN yarn install --frozen-lockfile
 
+COPY --chown=devops:devops . .
+
 # test and lint here when added
 
-RUN yarn build
-
-FROM nginx:1.19.0
-
-COPY --from=build-stage /app/build/ /usr/share/nginx/html
+USER devops
+EXPOSE 5000
+CMD [ "yarn", "start" ]
