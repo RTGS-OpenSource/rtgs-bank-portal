@@ -10,7 +10,6 @@ RUN addgroup -S devops && adduser -h /devops -S devops -G devops -u 1200 \
 
 # install and cache app dependencies
 COPY ["package.json", "yarn.lock", "./"]
-COPY package.json /app/
 
 RUN yarn install --frozen-lockfile
 

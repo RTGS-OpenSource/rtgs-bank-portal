@@ -3,7 +3,7 @@ services:
   client:
     build: ./packages/client
     ports:
-      - "80:80"
+      - "5001:80"
   server:
     build: ./packages/server
     ports:
