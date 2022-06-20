@@ -8,6 +8,7 @@ To run, simply:
 
 - run `nvm use` to ensure you are using the correct Node version
 - run `yarn`
+- run `yarn install:all`
 - run `yarn start`
 
 #### Prettier
