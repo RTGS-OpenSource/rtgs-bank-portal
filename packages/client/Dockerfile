@@ -1,4 +1,4 @@
-FROM node:14.17.4-alpine as build-stage
+FROM node:14.17.4-alpine as build
 
 WORKDIR /app
 
@@ -19,6 +19,6 @@ COPY --chown=devops:devops ./ /app/
 
 RUN yarn build
 
-FROM nginx:1.19.0
+FROM nginx:1.19.0 as deploy
 
-COPY --from=build-stage /app/build/ /usr/share/nginx/html
+COPY --from=build /app/build/ /usr/share/nginx/html
