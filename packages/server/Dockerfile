@@ -1,4 +1,4 @@
-FROM node:14.17.4-alpine as base
+FROM node:14.17.4-alpine as build
 
 WORKDIR /app
 
@@ -17,6 +17,7 @@ COPY --chown=devops:devops . .
 
 # test and lint here when added
 
+FROM build AS deploy
 USER devops
 EXPOSE 5000
 CMD [ "yarn", "start" ]
