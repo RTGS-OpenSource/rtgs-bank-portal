@@ -1,10 +1,12 @@
 version: "3.4"
 services:
   client:
+    image: ${CLIENT_TAG}
     build: ./packages/client
     ports:
       - "5001:80"
   server:
+    image: ${SERVER_TAG}
     build: ./packages/server
     ports:
       - "5000:5000"
