@@ -1,17 +1,22 @@
-import { Heading, Layout } from '@rtgs-global/components';
+import { PropTypes } from 'prop-types';
+import { Layout } from '@rtgs-global/components';
 
-import { routesConfig } from '../routes';
+import { routesConfig } from '../routesConfig';
 
 const routes = routesConfig();
 
-const App = () => {
+const App = ({ children }) => {
   const role = 'admin';
 
   return (
     <Layout routes={routes} role={role}>
-      <Heading headingLevel={1} text={'Home'} />
+      {children}
     </Layout>
   );
+};
+
+App.propTypes = {
+  children: PropTypes.object,
 };
 
 export default App;
