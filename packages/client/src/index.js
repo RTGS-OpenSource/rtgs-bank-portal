@@ -1,15 +1,15 @@
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './app';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import Routes from './routes';
 
 ReactDOM.render(
   <Router basename="/">
-    <Switch>
-      <Route path="/">
-        <App />
-      </Route>
-    </Switch>
+    <App>
+      <Routes />
+    </App>
   </Router>,
   document.getElementById('root')
 );

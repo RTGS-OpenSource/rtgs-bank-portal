@@ -1,16 +1,16 @@
-const routesConfig = () => [
-  {
-    path: '/',
-    roles: {},
-    page: 'home',
-    pageTitle: 'Bank',
-    menu: {
-      path: '/',
-      title: 'home',
-      testId: 'home-route',
-      icon: 'globe',
-    },
-  },
-];
+import { Route, Switch } from 'react-router-dom';
 
-export { routesConfig };
+import { Banks, Home } from './app/pages';
+
+const Routes = () => (
+  <Switch>
+    <Route exact path="/">
+      <Home />
+    </Route>
+    <Route exact path="/banks">
+      <Banks />
+    </Route>
+  </Switch>
+);
+
+export default Routes;
