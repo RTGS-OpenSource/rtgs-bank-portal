@@ -1616,10 +1616,10 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@rtgs-global/components@^1.0.28439":
-  version "1.0.28439"
-  resolved "https://registry.yarnpkg.com/@rtgs-global/components/-/components-1.0.28439.tgz#3a1a96aa5c8844fb534f5630ef88a56f14baadda"
-  integrity sha512-VZDG20QP0gVZSaULb4UQS+3XzUIrwRc7mi6nrYge0Bw2WoI1J0Xad2vjvunAoqUVJITosV7sIVsFL/+meij6Ug==
+"@rtgs-global/components@^1.0.28556":
+  version "1.0.28556"
+  resolved "https://registry.yarnpkg.com/@rtgs-global/components/-/components-1.0.28556.tgz#a7c226c64b1edc7c715dd19f4fb2c80bf499f31c"
+  integrity sha512-amhuPRilNM2qurekKI0Ijx96Ts7Unap/wFUirvo8SQFE+s5JqJWa0h+pKo3XNa1LTsDnEyFOmCW/I7YfisBrkg==
   dependencies:
     "@ant-design/icons" "^4.2.2"
     "@babel/polyfill" "^7.12.1"
