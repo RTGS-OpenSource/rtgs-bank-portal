@@ -1,4 +1,5 @@
 import { Heading, Tabs } from '@rtgs-global/components';
+import { AddBankTab } from './components';
 
 const { Tab } = Tabs;
 
@@ -13,7 +14,7 @@ const Banks = () => {
         </Tab>
         <Tab name="New Bank" index={2}>
           <Heading text="Add a new bank" headingLevel={2} />
-          <div>Content</div>
+          <AddBankTab />
         </Tab>
       </Tabs>
     </>
