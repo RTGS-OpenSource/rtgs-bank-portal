@@ -1,4 +1,4 @@
-const createBank = (bank) => {
+const createBank = (bank: any) => {
   if (!bank) {
     return {
       status: 400,
@@ -14,7 +14,7 @@ const createBank = (bank) => {
   };
 };
 
-const getBankSummaries = (term) => {
+const getBankSummaries = (term: string) => {
   if (!term) {
     return {
       status: 400,

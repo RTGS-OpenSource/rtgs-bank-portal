@@ -3,7 +3,7 @@ import {
   getBankSummaries,
   getTimezones,
   getCountries,
-} from './bank.js';
+} from './bank';
 
 describe('bank resolver', () => {
   describe('createBank', () => {

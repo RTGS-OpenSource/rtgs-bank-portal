@@ -1,12 +1,19 @@
+import 'graphql-import-node';
 import { ApolloServer } from 'apollo-server';
-import { resolvers } from './resolvers/index.js';
-import { typeDefs } from './typeDefs.js';
+import { makeExecutableSchema } from '@graphql-tools/schema';
+
+import { resolvers } from './resolvers';
+import * as typeDefs from './schema.graphql';
 
 const isMocked = process.env.MOCKED;
 
-const server = new ApolloServer({
+const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
+});
+
+const server = new ApolloServer({
+  schema,
   csrfPrevention: true,
   cache: 'bounded',
   mocks: !!isMocked,
