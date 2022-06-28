@@ -7,9 +7,11 @@
   "scripts": {
     "install:all": "npm-run-all --parallel install-client install-server",
     "start": "npm-run-all --parallel start-client start-server",
+    "start:mocked": "npm-run-all --parallel start-client start-server:mocked",
     "install-client": "yarn --cwd packages/client",
     "install-server": "yarn --cwd packages/server",
     "start-client": "yarn --cwd packages/client start",
-    "start-server": "yarn --cwd packages/server start"
+    "start-server": "yarn --cwd packages/server start",
+    "start-server:mocked": "yarn --cwd packages/server start:mocked"
   }
 }
