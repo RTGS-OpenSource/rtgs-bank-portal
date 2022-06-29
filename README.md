@@ -2,7 +2,7 @@
 
 #### Install and run
 
-The app is built using an Express server and a React client. It leverages Yarn workspaces and `npm-run-all` to compose running the app and server together locally.
+The app is built using an Express server and a React client. It leverages `npm-run-all` to compose running the app and server together locally.
 
 To run, simply:
 
@@ -10,6 +10,10 @@ To run, simply:
 - run `yarn`
 - run `yarn install:all`
 - run `yarn start`
+
+To run with mocked responses based on the gql schema, run all the above with the below tweak:
+
+- run `yarn start:mocked` instead of `yarn start`
 
 #### Prettier
 
