@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "yarn build",
-    "start:mocked": "MOCKED=true yarn build",
-    "build": "nodemon 'index.ts' --exec 'ts-node' index.ts -e ts,graphql",
+    "start": "yarn watch",
+    "start:mocked": "MOCKED=true yarn watch",
+    "watch": "nodemon 'index.ts' --exec 'ts-node' index.ts -e ts,graphql",
     "test": "jest ./",
     "lint": "eslint ./",
     "prettier:fix": "yarn prettier --write ."
