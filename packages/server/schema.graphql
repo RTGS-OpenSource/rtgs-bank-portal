@@ -1,0 +1,97 @@
+enum UserRole {
+  ADMIN
+  SECURITY_OFFICER
+}
+
+enum Currency {
+  GBP
+  USD
+  JPY
+  EUR
+}
+
+enum BankStatus {
+  Online
+  Offline
+}
+
+type User {
+  role: UserRole
+  supportedCurrencies: [Currency]
+}
+
+type Bank {
+  bankCheckCredentialsIssued: Boolean
+  currency: Currency
+  holdingBankDid: String
+  holdingBankName: String
+  iban: String
+  isLiquidity: Boolean
+  owningBankDid: String
+  owningBankName: String
+  participantCredentialsIssued: Boolean
+  status: BankStatus
+}
+
+type ForeignBank {
+  bankDid: String
+  bankName: String
+  currency: Currency
+}
+
+type BankSummary {
+  country: String
+  csleid: String
+  name: String
+}
+
+type Country {
+  code: String
+  name: String
+}
+
+type Query {
+  getBankSummaries(term: String!): [BankSummary]
+  getCountries: [Country]
+  getCurrentBank(bankDid: String!): Bank
+  getForeignBanks(bankDid: String!, currency: String!): [ForeignBank]
+  getTimezones: [String]
+  getUser: User
+}
+
+type CreateBankResponse {
+  status: String!
+}
+
+type CreateBankPartnerResponse {
+  status: String!
+  conflictingFields: [String]
+}
+
+input CreateBankInput {
+  bankName: String!
+  bic: String!
+  countryCode: String!
+  currencyCode: String!
+  iban: String!
+  lei: String!
+  sic: String!
+  timeZone: String!
+  newBank: Boolean!
+}
+
+input BankPartner {
+  approvingBankDid: String!
+  iban: String!
+  requestingBankDid: String!
+}
+
+input CreateBankPartnerInput {
+  currency: Currency!
+  bankPartner: BankPartner!
+}
+
+type Mutation {
+  createBank(bank: CreateBankInput!): CreateBankResponse
+  createBankPartner(values: CreateBankPartnerInput!): CreateBankPartnerResponse
+}
