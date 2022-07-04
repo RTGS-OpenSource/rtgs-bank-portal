@@ -17,7 +17,7 @@ const defaultMocks = [
     request: {
       query: GET_BANK_PARTNER_DATA,
       variables: {
-        bankDid: 'test-id',
+        bankDid: 'test-did',
         currency: 'GBP',
       },
     },
@@ -33,7 +33,7 @@ const defaultMocks = [
             },
           ],
           getUser: {
-            supportedCurrencies: ['GBP'],
+            supportedCurrencies: ['GBP', 'USD', 'JPY', 'EUR'],
           },
         },
       };
@@ -54,16 +54,16 @@ describe('AddBankPartnerTab', () => {
     jest.resetAllMocks();
   });
 
-  it('should query GET_BANK_PARTNER_DATA on load', () => {
+  it('should query GET_BANK_PARTNER_DATA on load', async () => {
     renderComponent();
-    waitFor(() => expect(bankPartnerCall).toHaveBeenCalled());
+    await waitFor(() => expect(bankPartnerCall).toHaveBeenCalled());
   });
 
-  it('should render add bank partner form', () => {
+  it('should render add bank partner form', async () => {
     renderComponent();
 
-    waitFor(() =>
-      expect(screen.getByText('Add a new bank')).toBeInTheDocument()
+    await waitFor(() =>
+      expect(screen.getByText('Add Bank Partner')).toBeInTheDocument()
     );
   });
 
@@ -73,13 +73,13 @@ describe('AddBankPartnerTab', () => {
     expect(screen.getByTestId('add-bank-partner-loader')).toBeInTheDocument();
   });
 
-  it('should render error message when bank partner data query fails', () => {
+  it('should render error message when bank partner data query fails', async () => {
     const mocks = [
       {
         request: {
           query: GET_BANK_PARTNER_DATA,
           variables: {
-            bankDid: 'test-id',
+            bankDid: 'test-did',
             currency: 'GBP',
           },
         },
@@ -89,7 +89,7 @@ describe('AddBankPartnerTab', () => {
 
     renderComponent(mocks);
 
-    waitFor(() =>
+    await waitFor(() =>
       expect(screen.getByText('Error retrieving form data')).toBeInTheDocument()
     );
   });

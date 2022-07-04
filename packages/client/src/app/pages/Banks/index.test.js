@@ -11,7 +11,7 @@ const mocks = [
     request: {
       query: GET_CURRENT_BANK,
       variables: {
-        bankDid: 'test-id',
+        bankDid: 'Test-bank-did',
       },
     },
     result: () => {
@@ -20,6 +20,7 @@ const mocks = [
         data: {
           getCurrentBank: {
             currency: 'GBP',
+            iban: 'test-iban',
           },
         },
       };
@@ -36,21 +37,23 @@ const renderComponent = () => {
 };
 
 describe('banks page', () => {
-  it('should render page', () => {
+  it('should render page', async () => {
     renderComponent();
 
-    waitFor(() => expect(screen.getByText('Banks')).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText('Banks')).toBeInTheDocument());
   });
 
-  it('should query GET_CURRENT_BANK on load', () => {
+  it('should query GET_CURRENT_BANK on load', async () => {
     renderComponent();
 
-    waitFor(() => expect(getCurrentBankCall).toHaveBeenCalled());
+    await waitFor(() => expect(getCurrentBankCall).toHaveBeenCalled());
   });
 
-  it('should render tabs', () => {
+  it('should render tabs', async () => {
     renderComponent();
 
-    waitFor(() => expect(screen.getByTestId('banks-tabs')).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.getByTestId('banks-tabs')).toBeInTheDocument()
+    );
   });
 });
