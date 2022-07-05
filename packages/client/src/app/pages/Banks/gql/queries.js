@@ -21,3 +21,26 @@ export const GET_BANK_PARTNER_DATA = gql`
     }
   }
 `;
+
+export const GET_BANK_PARTNERS = gql`
+  query GetBankPartners(
+    $bankDid: String!
+    $filter: String!
+    $offset: Int
+    $limit: Int
+  ) {
+    getBankPartners(
+      bankDid: $bankDid
+      filter: $filter
+      offset: $offset
+      limit: $limit
+    ) {
+      holdingBankDid
+      holdingBankName
+      owningBankDid
+      owningBankName
+      iban
+      currency
+    }
+  }
+`;
