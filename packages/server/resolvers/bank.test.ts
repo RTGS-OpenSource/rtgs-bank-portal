@@ -47,7 +47,7 @@ describe('bank resolver', () => {
         },
       };
 
-      const result = createBank(values);
+      const result = createBankPartner(values);
 
       expect(result).toEqual({ status: 'Success' });
     });
