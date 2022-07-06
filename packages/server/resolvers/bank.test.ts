@@ -1,5 +1,4 @@
 import {
-  createBank,
   createBankPartner,
   getBankSummaries,
   getCountries,
@@ -9,29 +8,6 @@ import {
 } from './bank';
 
 describe('bank resolver', () => {
-  describe('createBank', () => {
-    it('should throw if no bank supplied', () => {
-      expect(() => createBank()).toThrow();
-    });
-
-    it(`should return 'Success' on success`, () => {
-      const bank = {
-        bankName: 'test-bank',
-        bic: 'test-bic',
-        countryCode: 'GB',
-        currencyCode: 'GBP',
-        iban: 'test-iban',
-        lei: 'test-lei',
-        sic: 'test-sic',
-        timeZone: 'europe/london',
-      };
-
-      const result = createBank(bank);
-
-      expect(result).toEqual({ status: 'Success' });
-    });
-  });
-
   describe('createBankPartner', () => {
     it('should throw if no values supplied', () => {
       expect(() => createBankPartner()).toThrow();
@@ -47,7 +23,7 @@ describe('bank resolver', () => {
         },
       };
 
-      const result = createBank(values);
+      const result = createBankPartner(values);
 
       expect(result).toEqual({ status: 'Success' });
     });

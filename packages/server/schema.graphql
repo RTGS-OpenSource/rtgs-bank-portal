@@ -8,6 +8,8 @@ enum Currency {
   USD
   JPY
   EUR
+  NZD
+  CAD
 }
 
 enum BankStatus {
@@ -50,17 +52,28 @@ type Country {
   name: String
 }
 
+type BankPartner {
+  holdingBankDid: String
+  holdingBankName: String
+  owningBankDid: String
+  owningBankName: String
+  iban: String
+  currency: Currency
+}
+
 type Query {
   getBankSummaries(term: String!): [BankSummary]
   getCountries: [Country]
   getCurrentBank(bankDid: String!): Bank
   getForeignBanks(bankDid: String!, currency: String!): [ForeignBank]
+  getBankPartners(
+    bankDid: String!
+    filter: String!
+    offset: Int
+    limit: Int
+  ): [BankPartner]
   getTimezones: [String]
   getUser: User
-}
-
-type CreateBankResponse {
-  status: String!
 }
 
 type CreateBankPartnerResponse {
@@ -68,19 +81,7 @@ type CreateBankPartnerResponse {
   conflictingFields: [String]
 }
 
-input CreateBankInput {
-  bankName: String!
-  bic: String!
-  countryCode: String!
-  currencyCode: String!
-  iban: String!
-  lei: String!
-  sic: String!
-  timeZone: String!
-  newBank: Boolean!
-}
-
-input BankPartner {
+input BankPartnerInput {
   approvingBankDid: String!
   iban: String!
   requestingBankDid: String!
@@ -88,10 +89,9 @@ input BankPartner {
 
 input CreateBankPartnerInput {
   currency: Currency!
-  bankPartner: BankPartner!
+  bankPartner: BankPartnerInput!
 }
 
 type Mutation {
-  createBank(bank: CreateBankInput!): CreateBankResponse
   createBankPartner(values: CreateBankPartnerInput!): CreateBankPartnerResponse
 }
