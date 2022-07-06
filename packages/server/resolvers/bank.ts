@@ -1,25 +1,32 @@
+import { ApolloError } from 'apollo-server-errors';
+
 const createBank = (bank: any) => {
   if (!bank) {
-    return {
-      status: 400,
-      error: 'No bank supplied',
-    };
+    throw new ApolloError('No bank supplied', 'BAD_USER_INPUT');
   }
 
   // call api to create bank
 
   return {
-    status: 200,
-    error: '',
+    status: 'Success',
+  };
+};
+
+const createBankPartner = (values: any) => {
+  if (!values) {
+    throw new ApolloError('No values supplied', 'BAD_USER_INPUT');
+  }
+
+  // call api to create bank partner
+
+  return {
+    status: 'Success',
   };
 };
 
 const getBankSummaries = (term: string) => {
   if (!term) {
-    return {
-      status: 400,
-      error: 'No search term supplied',
-    };
+    throw new ApolloError('No term supplied', 'BAD_USER_INPUT');
   }
 
   // call endpoint to get summaries from supplied term
@@ -56,4 +63,60 @@ const getTimezones = () => {
   return ['Asia/Tokyo', 'Europe/London', 'America/New_York'];
 };
 
-export { createBank, getBankSummaries, getCountries, getTimezones };
+const getForeignBanks = (bankDid: string, currency: string) => {
+  if (!bankDid || !currency) {
+    throw new ApolloError('No bankDid or currency supplied', 'BAD_USER_INPUT');
+  }
+
+  return [
+    {
+      bankDid: 'RTGS:B:GB13951280',
+      bankName: 'cypressTestBank678362',
+      currency: 'GBP',
+    },
+    {
+      bankDid: 'RTGS:B:GB20027710',
+      bankName: 'cypressTestBank405236',
+      currency: 'GBP',
+    },
+    {
+      bankDid: 'RTGS:B:GB32490351',
+      bankName: 'cypressTestBank447676',
+      currency: 'GBP',
+    },
+    {
+      bankDid: 'RTGS:B:GB33652306',
+      bankName: 'MK Test Bank',
+      currency: 'GBP',
+    },
+  ];
+};
+
+const getCurrentBank = (bankDid: string) => {
+  if (!bankDid) {
+    throw new ApolloError('No bankDid supplied', 'BAD_USER_INPUT');
+  }
+
+  return {
+    bankCheckCredentialsIssued: true,
+    currency: 'USD',
+    holdingBankDid: 'AL:USD',
+    holdingBankName: 'Absolutely Loaded',
+    iban: 'AL12345678',
+    isLiquidity: true,
+    owningBankDid: 'AL:USD',
+    owningBankName: 'Absolutely Loaded',
+    participantCredentialsIssued: true,
+    status: 'Online',
+  };
+};
+
+export {
+  createBank,
+  createBankPartner,
+  getBankSummaries,
+  getCountries,
+  getCurrentBank,
+  getForeignBanks,
+  getTimezones,
+};

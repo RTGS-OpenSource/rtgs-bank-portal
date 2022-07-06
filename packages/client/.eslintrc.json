@@ -1,5 +1,6 @@
 {
   "env": {
+    "node": true,
     "browser": true,
     "es2021": true,
     "jest": true
@@ -20,7 +21,8 @@
   "plugins": ["react", "prettier"],
   "rules": {
     "prettier/prettier": "error",
-    "eol-last": "error"
+    "eol-last": "error",
+    "no-process-env": "off"
   },
   "settings": {
     "react": {

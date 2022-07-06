@@ -1,1 +1,1 @@
-export { default as AddBankTab } from './AddBankTab';
+export { default as AddBankPartnerTab } from './AddBankPartnerTab';

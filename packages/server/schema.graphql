@@ -10,9 +10,33 @@ enum Currency {
   EUR
 }
 
+enum BankStatus {
+  Online
+  Offline
+}
+
 type User {
   role: UserRole
   supportedCurrencies: [Currency]
+}
+
+type Bank {
+  bankCheckCredentialsIssued: Boolean
+  currency: Currency
+  holdingBankDid: String
+  holdingBankName: String
+  iban: String
+  isLiquidity: Boolean
+  owningBankDid: String
+  owningBankName: String
+  participantCredentialsIssued: Boolean
+  status: BankStatus
+}
+
+type ForeignBank {
+  bankDid: String
+  bankName: String
+  currency: Currency
 }
 
 type BankSummary {
@@ -28,27 +52,46 @@ type Country {
 
 type Query {
   getBankSummaries(term: String!): [BankSummary]
-  getTimezones: [String]
   getCountries: [Country]
+  getCurrentBank(bankDid: String!): Bank
+  getForeignBanks(bankDid: String!, currency: String!): [ForeignBank]
+  getTimezones: [String]
   getUser: User
 }
 
 type CreateBankResponse {
-  status: Int
-  error: String
+  status: String!
+}
+
+type CreateBankPartnerResponse {
+  status: String!
+  conflictingFields: [String]
 }
 
 input CreateBankInput {
-  bankName: String
-  bic: String
-  countryCode: String
-  currencyCode: String
-  iban: String
-  lei: String
-  sic: String
-  timeZone: String
+  bankName: String!
+  bic: String!
+  countryCode: String!
+  currencyCode: String!
+  iban: String!
+  lei: String!
+  sic: String!
+  timeZone: String!
+  newBank: Boolean!
+}
+
+input BankPartner {
+  approvingBankDid: String!
+  iban: String!
+  requestingBankDid: String!
+}
+
+input CreateBankPartnerInput {
+  currency: Currency!
+  bankPartner: BankPartner!
 }
 
 type Mutation {
   createBank(bank: CreateBankInput!): CreateBankResponse
+  createBankPartner(values: CreateBankPartnerInput!): CreateBankPartnerResponse
 }
