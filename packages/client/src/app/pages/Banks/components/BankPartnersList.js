@@ -18,6 +18,7 @@ const BankPartnersList = ({ bankDid, filter }) => {
   ] = useLazyQuery(GET_BANK_PARTNERS);
 
   useEffect(() => {
+    console.log('calling', filter);
     getBankPartners({ variables: { bankDid, filter, offset: 0, limit: 99 } });
   }, [filter]);
 

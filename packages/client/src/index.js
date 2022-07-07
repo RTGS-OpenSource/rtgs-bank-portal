@@ -15,7 +15,7 @@ const client = new ApolloClient({
     typePolicies: {
       Query: {
         fields: {
-          getBankPartners: offsetLimitPagination(),
+          getBankPartners: offsetLimitPagination(['bankDid', 'filter']),
         },
       },
     },
