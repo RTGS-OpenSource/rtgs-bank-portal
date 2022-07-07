@@ -34,7 +34,7 @@ const Banks = () => {
       <Tabs initialIndex={1} testId="banks-tabs">
         <Tab name="Bank partners" index={1}>
           <Heading headingLevel={2} text="See all bank partners" />
-          <BankPartnersTab />
+          <BankPartnersTab bankDid={currentBankDid} />
         </Tab>
         <Tab name="Add Bank Partner" index={2}>
           <Heading text="Add bank partner" headingLevel={2} />

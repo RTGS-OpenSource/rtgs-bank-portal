@@ -1,16 +1,6 @@
 import { ApolloError } from 'apollo-server-errors';
 
-const createBank = (bank: any) => {
-  if (!bank) {
-    throw new ApolloError('No bank supplied', 'BAD_USER_INPUT');
-  }
-
-  // call api to create bank
-
-  return {
-    status: 'Success',
-  };
-};
+import { mockResponses } from './mocks';
 
 const createBankPartner = (values: any) => {
   if (!values) {
@@ -24,6 +14,35 @@ const createBankPartner = (values: any) => {
   };
 };
 
+const getBankPartners = (
+  bankDid: string,
+  filter: string,
+  offset: number,
+  limit: number
+) => {
+  if (!bankDid) {
+    throw new ApolloError('No bankDid supplied', 'BAD_USER_INPUT');
+  }
+
+  // get bankPartners by bankDid
+  let results = mockResponses.bankPartners;
+
+  if (filter) {
+    results = mockResponses.bankPartners.filter(
+      (partner) =>
+        partner.holdingBankName.toLowerCase().includes(filter.toLowerCase()) ||
+        partner.holdingBankDid.toLowerCase().includes(filter.toLowerCase()) ||
+        partner.iban.toLowerCase().includes(filter.toLowerCase())
+    );
+  }
+
+  if ((offset || offset === 0) && limit) {
+    return results.slice(offset, offset + limit);
+  }
+
+  return results;
+};
+
 const getBankSummaries = (term: string) => {
   if (!term) {
     throw new ApolloError('No term supplied', 'BAD_USER_INPUT');
@@ -31,31 +50,12 @@ const getBankSummaries = (term: string) => {
 
   // call endpoint to get summaries from supplied term
 
-  return [
-    {
-      country: 'Cn',
-      csleid: 'some-csleid',
-      name: 'Test bank',
-    },
-  ];
+  return mockResponses.bankSummaries;
 };
 
 const getCountries = () => {
   // get countries
-  return [
-    {
-      code: 'JP',
-      name: 'Japan',
-    },
-    {
-      code: 'GB',
-      name: 'United Kingdom',
-    },
-    {
-      code: 'US',
-      name: 'United States of America',
-    },
-  ];
+  return mockResponses.countries;
 };
 
 const getTimezones = () => {
@@ -68,28 +68,7 @@ const getForeignBanks = (bankDid: string, currency: string) => {
     throw new ApolloError('No bankDid or currency supplied', 'BAD_USER_INPUT');
   }
 
-  return [
-    {
-      bankDid: 'RTGS:B:GB13951280',
-      bankName: 'cypressTestBank678362',
-      currency: 'GBP',
-    },
-    {
-      bankDid: 'RTGS:B:GB20027710',
-      bankName: 'cypressTestBank405236',
-      currency: 'GBP',
-    },
-    {
-      bankDid: 'RTGS:B:GB32490351',
-      bankName: 'cypressTestBank447676',
-      currency: 'GBP',
-    },
-    {
-      bankDid: 'RTGS:B:GB33652306',
-      bankName: 'MK Test Bank',
-      currency: 'GBP',
-    },
-  ];
+  return mockResponses.foreignBanks;
 };
 
 const getCurrentBank = (bankDid: string) => {
@@ -97,23 +76,12 @@ const getCurrentBank = (bankDid: string) => {
     throw new ApolloError('No bankDid supplied', 'BAD_USER_INPUT');
   }
 
-  return {
-    bankCheckCredentialsIssued: true,
-    currency: 'USD',
-    holdingBankDid: 'AL:USD',
-    holdingBankName: 'Absolutely Loaded',
-    iban: 'AL12345678',
-    isLiquidity: true,
-    owningBankDid: 'AL:USD',
-    owningBankName: 'Absolutely Loaded',
-    participantCredentialsIssued: true,
-    status: 'Online',
-  };
+  return mockResponses.currentBank;
 };
 
 export {
-  createBank,
   createBankPartner,
+  getBankPartners,
   getBankSummaries,
   getCountries,
   getCurrentBank,

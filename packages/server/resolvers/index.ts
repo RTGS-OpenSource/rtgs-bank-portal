@@ -1,6 +1,6 @@
 import {
-  createBank,
   createBankPartner,
+  getBankPartners,
   getBankSummaries,
   getCountries,
   getCurrentBank,
@@ -12,6 +12,10 @@ import { getUser } from './user';
 
 const resolvers = {
   Query: {
+    getBankPartners: (
+      _: void,
+      args: { bankDid: string; filter: string; offset: number; limit: number }
+    ) => getBankPartners(args.bankDid, args.filter, args.offset, args.limit),
     getBankSummaries: (_: void, args: { term: string }) =>
       getBankSummaries(args.term),
     getCurrentBank: (_: void, args: { bankDid: string }) =>
@@ -25,7 +29,6 @@ const resolvers = {
     getUser,
   },
   Mutation: {
-    createBank: (_: void, args: { bank: any }) => createBank(args.bank),
     createBankPartner: (_: void, args: { values: any }) =>
       createBankPartner(args.values),
   },

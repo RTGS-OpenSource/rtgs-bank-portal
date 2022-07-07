@@ -1646,10 +1646,10 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@rtgs-global/components@^1.0.28556":
-  version "1.0.28556"
-  resolved "https://registry.yarnpkg.com/@rtgs-global/components/-/components-1.0.28556.tgz#a7c226c64b1edc7c715dd19f4fb2c80bf499f31c"
-  integrity sha512-amhuPRilNM2qurekKI0Ijx96Ts7Unap/wFUirvo8SQFE+s5JqJWa0h+pKo3XNa1LTsDnEyFOmCW/I7YfisBrkg==
+"@rtgs-global/components@^1.0.28746":
+  version "1.0.28746"
+  resolved "https://registry.yarnpkg.com/@rtgs-global/components/-/components-1.0.28746.tgz#6d44e6fc171ab2947455e3dcf0e4527841d2e75d"
+  integrity sha512-ROTAdQ/q2rGo0Kutw4R5c7TZkP5CNChO/l26DzGnmxQfpvqYi8/1Z3dnFIBljcQLkzM472+NiGhftMcy+JQmiA==
   dependencies:
     "@ant-design/icons" "^4.2.2"
     "@babel/polyfill" "^7.12.1"
@@ -1667,6 +1667,7 @@
     prop-types "^15.8.1"
     react-helmet "^6.1.0"
     react-icons "^4.3.1"
+    react-intersection-observer "^9.3.5"
     react-papaparse "^3.18.2"
     react-redux "^7.2.6"
     stream-browserify "^3.0.0"
@@ -7598,6 +7599,11 @@ react-icons@^4.3.1:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.4.0.tgz#a13a8a20c254854e1ec9aecef28a95cdf24ef703"
   integrity sha512-fSbvHeVYo/B5/L4VhB7sBA1i2tS8MkT0Hb9t2H1AVPkwGfVHLJCqyr2Py9dKMxsyM63Eng1GkdZfbWj+Fmv8Rg==
+
+react-intersection-observer@^9.3.5:
+  version "9.3.5"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-9.3.5.tgz#df97584c1ef1549a47d4af6380db2fb4b76d7bba"
+  integrity sha512-TiJXVUapzAaIrZCAMBLjyWvwGYNGm0Xpkcwm3NY23b9PsJEBavul0hRFmrwc/LOmBUA/8TlkjCj7lCvjM0q1Hg==
 
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0:
   version "16.13.1"

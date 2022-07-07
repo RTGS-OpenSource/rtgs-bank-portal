@@ -22,7 +22,8 @@
   "rules": {
     "prettier/prettier": "error",
     "eol-last": "error",
-    "no-process-env": "off"
+    "no-process-env": "off",
+    "react/display-name": "off"
   },
   "settings": {
     "react": {
