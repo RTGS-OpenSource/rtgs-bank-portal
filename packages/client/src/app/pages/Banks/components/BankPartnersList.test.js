@@ -13,7 +13,7 @@ const defaultMocks = [
         bankDid: 'Test-bank-did',
         filter: '',
         offset: 0,
-        limit: 99,
+        limit: 15,
       },
     },
     result: {
@@ -73,7 +73,7 @@ describe('BankPartnersList', () => {
             bankDid: 'Test-bank-did',
             filter: '',
             offset: 0,
-            limit: 99,
+            limit: 15,
           },
         },
         error: new Error('An error occurred'),
