@@ -4,12 +4,13 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.6.9",
-    "@rtgs-global/components": "^1.0.28746",
+    "@rtgs-global/components": "^1.0.28768",
     "graphql": "^16.5.0",
     "lodash.debounce": "^4.0.8",
     "prop-types": "^15.8.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
+    "react-intersection-observer": "^9.3.5",
     "react-router-dom": "^5.1.2",
     "react-scripts": "5.0.1"
   },

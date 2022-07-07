@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
 import { useLazyQuery } from '@apollo/client';
+import { InView } from 'react-intersection-observer';
 
 import { BankPartnersTable, Dialog, Loader } from '@rtgs-global/components';
 import { GET_BANK_PARTNERS } from '../gql/queries';
@@ -14,12 +15,12 @@ const BankPartnersList = ({ bankDid, filter }) => {
       loading: bankPartnersLoading,
       error: bankPartnersError,
       data: bankPartners,
+      fetchMore,
     },
   ] = useLazyQuery(GET_BANK_PARTNERS);
 
   useEffect(() => {
-    console.log('calling', filter);
-    getBankPartners({ variables: { bankDid, filter, offset: 0, limit: 99 } });
+    getBankPartners({ variables: { bankDid, filter, offset: 0, limit: 15 } });
   }, [filter]);
 
   if (bankPartnersError) {
@@ -41,6 +42,15 @@ const BankPartnersList = ({ bankDid, filter }) => {
         showDelete
         onClickDelete={(bankPartner) => {
           setPartnerToDelete(bankPartner);
+        }}
+      />
+      <InView
+        onChange={async (inView) => {
+          if (inView) {
+            fetchMore({
+              variables: { offset: bankPartnersResult.length, limit: 15 },
+            });
+          }
         }}
       />
       {!!partnerToDelete && (
