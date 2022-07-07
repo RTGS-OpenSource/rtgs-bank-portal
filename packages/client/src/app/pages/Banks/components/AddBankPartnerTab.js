@@ -74,13 +74,11 @@ const AddBankPartnerTab = ({ currentBankDid, currency }) => {
   return (
     <>
       <AddBankPartner
-        getForeignBanks={() => {}}
         createBankPartner={createBankPartner}
         bankDid={currentBankDid}
         jurisdiction={currency}
         getForeignBanksResult={foreignBanksResult}
         createBankPartnerResult={createBankPartnerResult}
-        createBankPartnerResultReceived={() => {}}
         supportedCurrencies={supportedCurrencies}
       />
     </>

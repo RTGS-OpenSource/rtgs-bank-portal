@@ -25,21 +25,22 @@ const getBankPartners = (
   }
 
   // get bankPartners by bankDid
+  let results = mockResponses.bankPartners;
 
   if (filter) {
-    // filter response
+    results = mockResponses.bankPartners.filter(
+      (partner) =>
+        partner.holdingBankName.toLowerCase().includes(filter.toLowerCase()) ||
+        partner.holdingBankDid.toLowerCase().includes(filter.toLowerCase()) ||
+        partner.iban.toLowerCase().includes(filter.toLowerCase())
+    );
   }
 
-  if (offset && limit) {
-    // paginate response
+  if ((offset || offset === 0) && limit) {
+    return results.slice(offset, offset + limit);
   }
 
-  return mockResponses.bankPartners.filter(
-    (partner) =>
-      partner.holdingBankName.toLowerCase().includes(filter.toLowerCase()) ||
-      partner.holdingBankDid.toLowerCase().includes(filter.toLowerCase()) ||
-      partner.iban.toLowerCase().includes(filter.toLowerCase())
-  );
+  return results;
 };
 
 const getBankSummaries = (term: string) => {
