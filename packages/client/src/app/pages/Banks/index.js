@@ -1,7 +1,11 @@
 import { useQuery } from '@apollo/client';
 
 import { Heading, Loader, Tabs } from '@rtgs-global/components';
-import { AddBankPartnerTab, BankPartnersTab } from './components';
+import {
+  AddBankPartnerTab,
+  BankPartnerRequestsTab,
+  BankPartnersTab,
+} from './components';
 import { GET_CURRENT_BANK } from './gql/queries';
 
 const { Tab } = Tabs;
@@ -40,6 +44,13 @@ const Banks = () => {
           <Heading text="Add bank partner" headingLevel={2} />
           <AddBankPartnerTab
             currentBankDid={currentBankDid}
+            currency={currency}
+          />
+        </Tab>
+        <Tab name="Bank Partner Requests" index={3}>
+          <Heading text="Bank Partner Requests" headingLevel={2} />
+          <BankPartnerRequestsTab
+            bankDid={currentBankDid}
             currency={currency}
           />
         </Tab>
