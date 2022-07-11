@@ -44,3 +44,16 @@ export const GET_BANK_PARTNERS = gql`
     }
   }
 `;
+
+export const GET_BANK_PARTNER_REQUESTS = gql`
+  query getBankPartnerRequests($bankDid: String!) {
+    getBankPartnerRequests(bankDid: $bankDid) {
+      holdingBankDid
+      holdingBankName
+      owningBankDid
+      owningBankName
+      iban
+      currency
+    }
+  }
+`;

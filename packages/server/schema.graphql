@@ -71,6 +71,7 @@ type Query {
   getCountries: [Country]
   getCurrentBank(bankDid: String!): Bank
   getForeignBanks(bankDid: String!, currency: String!): [ForeignBank]
+  getBankPartnerRequests(bankDid: String!): [BankPartner]
   getBankPartners(
     bankDid: String!
     filter: String!

@@ -1,5 +1,6 @@
 import {
   createBankPartner,
+  getBankPartnerRequests,
   getBankSummaries,
   getCountries,
   getCurrentBank,
@@ -49,6 +50,91 @@ describe('bank resolver', () => {
         participantCredentialsIssued: true,
         status: 'Online',
       });
+    });
+  });
+
+  describe('getBankPartnerRequests', () => {
+    it('should throw if no bankDid supplied', () => {
+      expect(() => getBankPartnerRequests(null, 'GBP')).toThrow();
+    });
+
+    it('should return bank partner requests on success', () => {
+      const result = getBankPartnerRequests('testBankDid');
+
+      expect(result).toEqual([
+        {
+          holdingBankDid: 'RTGS:GB368650GBPCYPRESS',
+          holdingBankName: 'Jason Test Bank GBP 2',
+          owningBankDid: 'Test-bank-did',
+          owningBankName: 'Absolutely Loaded',
+          iban: 'GB83BARC20037824333683',
+          currency: 'GBP',
+        },
+        {
+          holdingBankDid: 'RTGS:GB1444312B',
+          holdingBankName: 'BankCheck Test Bank',
+          owningBankDid: 'Test-bank-did',
+          owningBankName: 'Absolutely Loaded',
+          iban: 'fsdflkj2423',
+          currency: 'USD',
+        },
+        {
+          holdingBankDid: 'RTGS:GB802834GBPCYPRESS',
+          holdingBankName: 'Jason Test Bank GBP 3',
+          owningBankDid: 'Test-bank-did',
+          owningBankName: 'Absolutely Loaded',
+          iban: 'GB87BARC20037872988423',
+          currency: 'GBP',
+        },
+        {
+          holdingBankDid: 'Test-bank-did',
+          holdingBankName: 'Absolutely Loaded',
+          owningBankDid: 'RTGS:B:GB19857663',
+          owningBankName: 'cypressTestBank299542',
+          iban: 'DE11700500000002529873',
+          currency: 'USD',
+        },
+        {
+          holdingBankDid: 'Test-bank-did',
+          holdingBankName: 'Absolutely Loaded',
+          owningBankDid: 'RTGS:B:GB22150197',
+          owningBankName: 'cypressTestBank395359',
+          iban: 'DE62700500000001140594',
+          currency: 'USD',
+        },
+        {
+          holdingBankDid: 'Test-bank-did',
+          holdingBankName: 'Absolutely Loaded',
+          owningBankDid: 'RTGS:B:GB80072010',
+          owningBankName: 'cypressTestBank642175',
+          iban: 'DE22700500000005921280',
+          currency: 'USD',
+        },
+        {
+          holdingBankDid: 'Test-bank-did',
+          holdingBankName: 'Absolutely Loaded',
+          owningBankDid: 'RTGS:B:GB94379716',
+          owningBankName: 'cypressTestBank260704',
+          iban: 'DE74700500000004532953',
+          currency: 'USD',
+        },
+        {
+          holdingBankDid: 'Test-bank-did',
+          holdingBankName: 'Absolutely Loaded',
+          owningBankDid: 'RTGS:GB08022022B',
+          owningBankName: 'Bank GBP',
+          iban: 'JH389889898',
+          currency: 'USD',
+        },
+        {
+          holdingBankDid: 'Test-bank-did',
+          holdingBankName: 'Absolutely Loaded',
+          owningBankDid: 'RTGS:GB230220221B',
+          owningBankName: 'Mo 21',
+          iban: 'HG768768768768976',
+          currency: 'USD',
+        },
+      ]);
     });
   });
 

@@ -43,6 +43,14 @@ const getBankPartners = (
   return results;
 };
 
+const getBankPartnerRequests = (bankDid: string) => {
+  if (!bankDid) {
+    throw new ApolloError('No bankDid supplied', 'BAD_USER_INPUT');
+  }
+
+  return mockResponses.bankPartnerRequests;
+};
+
 const getBankSummaries = (term: string) => {
   if (!term) {
     throw new ApolloError('No term supplied', 'BAD_USER_INPUT');
@@ -81,6 +89,7 @@ const getCurrentBank = (bankDid: string) => {
 
 export {
   createBankPartner,
+  getBankPartnerRequests,
   getBankPartners,
   getBankSummaries,
   getCountries,
